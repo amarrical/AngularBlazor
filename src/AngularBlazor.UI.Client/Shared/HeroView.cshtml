@@ -1,0 +1,14 @@
+﻿@using AngularBlazor.UI.Shared
+
+<h2>@hero.Name.ToUpper() Details</h2>
+<div><span>Id: </span> @hero.Id</div>
+<div>
+    <label>
+        Name:
+        <input type="text" bind="@hero.Name" />
+    </label>
+</div>
+
+@functions {
+    Hero hero = new Hero { Id = 1, Name = "Windstorm" };
+}

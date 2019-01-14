@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AngularBlazor.UI.Shared
+﻿namespace AngularBlazor.UI.Shared
 {
+    using System;
+
     public class WeatherForecast
     {
         public DateTime Date { get; set; }
