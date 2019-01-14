@@ -1,24 +1,38 @@
 ﻿@using AngularBlazor.UI.Shared
+@inject HttpClient Http
 
-<h2>My Heroes</h2>
-<ul class="heroes">
-    @foreach (var hero in HeroList)
-    {
-        <li class="@(hero == selectedHero ? "selected" : "")" onclick=@(() => OnSelect(hero))>
-            <span class="badge">@hero.Id</span> @hero.Name
-        </li>
-    }
-</ul>
-@if (selectedHero != null)
+@if (heroList == null)
 {
-    <HeroView Hero="@selectedHero"/>
+    <p><em>Loading...</em></p>
 }
+else
+{
+    <h2>My Heroes</h2>
+    <ul class="heroes">
+        @foreach (var hero in heroList)
+        {
+            <li class="@(hero == selectedHero ? "selected" : "")" onclick=@(() => OnSelect(hero))>
+                <span class="badge">@hero.Id</span> @hero.Name
+            </li>
+        }
+    </ul>
+    @if (selectedHero != null)
+     {
+         <HeroView Hero="@selectedHero" />
+     } 
+}
+
 
 @functions {
 
     Hero selectedHero;
 
-    Hero[] HeroList = Data.Heroes;
+    Hero[] heroList;
+
+    protected override async Task OnInitAsync()
+    {
+        heroList = await Http.GetJsonAsync<Hero[]>("api/Hero");
+    }
 
     void OnSelect(Hero hero)
     {

@@ -1,12 +1,13 @@
-﻿using AngularBlazor.UI.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AngularBlazor.UI.Server.Controllers
+﻿namespace AngularBlazor.UI.Server.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AngularBlazor.UI.Shared;
+
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
