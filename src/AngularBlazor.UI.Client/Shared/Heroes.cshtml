@@ -1,0 +1,28 @@
+﻿@using AngularBlazor.UI.Shared
+
+<h2>My Heroes</h2>
+<ul class="heroes">
+    @foreach (var hero in HeroList)
+    {
+        <li class="@(hero == selectedHero ? "selected" : "")" onclick=@(() => OnSelect(hero))>
+            <span class="badge">@hero.Id</span> @hero.Name
+        </li>
+    }
+</ul>
+@if (selectedHero != null)
+{
+    <HeroView Hero="@selectedHero"/>
+}
+
+@functions {
+
+    Hero selectedHero;
+
+    Hero[] HeroList = Data.Heroes;
+
+    void OnSelect(Hero hero)
+    {
+        selectedHero = hero;
+    }
+
+}
