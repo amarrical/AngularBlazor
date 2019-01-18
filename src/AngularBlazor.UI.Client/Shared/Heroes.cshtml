@@ -1,4 +1,6 @@
 ﻿@using AngularBlazor.UI.Shared
+@using AngularBlazor.UI.Client.Services
+@inject MessagesService messageService
 @inject HttpClient Http
 
 @if (heroList == null)
@@ -16,10 +18,10 @@ else
             </li>
         }
     </ul>
-    @if (selectedHero != null)
-     {
-         <HeroView Hero="@selectedHero" />
-     } 
+    if (selectedHero != null)
+    {
+        <HeroView Hero="@selectedHero" />
+    }
 }
 
 
@@ -31,6 +33,7 @@ else
 
     protected override async Task OnInitAsync()
     {
+        messageService.Add("Hero Service: fetched heroes");
         heroList = await Http.GetJsonAsync<Hero[]>("api/Hero");
     }
 

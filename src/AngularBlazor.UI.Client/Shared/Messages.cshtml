@@ -1,0 +1,25 @@
+﻿@using AngularBlazor.UI.Client.Services
+@inject MessagesService messageService
+
+    @if (List.Any())
+    {
+        <div class="messages">
+            <h2>Messages</h2>
+            <button class="clear" onclick="@Clear">clear</button>
+            @foreach (var message in List)
+            {
+                <div>@message</div>
+            }
+        </div>
+    }
+
+@functions {
+
+    readonly IReadOnlyList<string> List = MessagesService.Messages;
+
+    private void Clear()
+    {
+        this.messageService.Clear();
+    }
+
+}
