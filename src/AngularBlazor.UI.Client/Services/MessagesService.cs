@@ -7,7 +7,7 @@
     {
         #region [ Fields ]
 
-        private static List<string> messages = new List<string>();
+        private List<string> messages = new List<string>();
 
         #endregion
 
@@ -19,7 +19,7 @@
 
         #region [ Properties ]
 
-        public static IReadOnlyList<string> Messages => messages;
+        public IReadOnlyList<string> Messages => messages;
 
         #endregion
 

@@ -9,7 +9,9 @@ namespace AngularBlazor.UI.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<MessagesService>();
+            services
+                .AddSingleton<MessagesService>()
+                .AddSingleton<HeroService>();
         }
 
         public void Configure(IBlazorApplicationBuilder app)

@@ -1,6 +1,7 @@
-﻿@using AngularBlazor.UI.Shared
+﻿@page "/heroes"
+@using AngularBlazor.UI.Shared
 @using AngularBlazor.UI.Client.Services
-@inject MessagesService messageService
+@inject HeroService HeroService
 @inject HttpClient Http
 
 @if (heroList == null)
@@ -29,17 +30,26 @@ else
 
     Hero selectedHero;
 
-    Hero[] heroList;
-
+    IReadOnlyList<Hero> heroList;
+     
     protected override async Task OnInitAsync()
     {
-        messageService.Add("Hero Service: fetched heroes");
-        heroList = await Http.GetJsonAsync<Hero[]>("api/Hero");
+        heroList = await this.HeroService.Get();
+    }
+
+    protected override void OnInit()
+    {
+        HeroService.OnChange += StateChange;
     }
 
     void OnSelect(Hero hero)
     {
         selectedHero = hero;
+    }
+
+    private void StateChange()
+    {
+        this.StateHasChanged();
     }
 
 }

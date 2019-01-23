@@ -1,15 +1,26 @@
 ﻿@using AngularBlazor.UI.Shared
+@using AngularBlazor.UI.Client.Services
+@inject HeroService heroService
 
 <h2>@hero.Name.ToUpper() Details</h2>
 <div><span>Id: </span> @hero.Id</div>
 <div>
     <label>
         Name:
-        <input type="text" bind="@hero.Name" />
+        <input type="text" onchange="@Change" />
     </label>
 </div>
 
 @functions {
+
     [Parameter]
     Hero hero { get; set; }
+
+
+    public void Change(UIChangeEventArgs e)
+    {
+        hero.Name = e.Value.ToString();
+        Console.WriteLine("Hero name changed");
+        heroService.Change();
+    }
 }
