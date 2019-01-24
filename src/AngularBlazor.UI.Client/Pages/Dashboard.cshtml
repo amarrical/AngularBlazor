@@ -1,0 +1,38 @@
+﻿@page "/"
+@using System.Linq;
+@using AngularBlazor.UI.Shared
+@using AngularBlazor.UI.Client.Services
+@inject HeroService HeroService
+
+<div class="dashboard">
+    <h3>Top Heroes</h3>
+
+    @if (topHeroes == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="grid grid-pad">
+            @foreach (var hero in topHeroes)
+            {
+                <a class="col-1-4" href="/detail/@hero.Id">
+                    <div class="module hero">
+                        <h4>@hero.Name</h4>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+</div>
+
+@functions {
+
+    List<Hero> topHeroes;
+
+    protected override async Task OnInitAsync()
+    {
+        topHeroes = (await this.HeroService.Get()).Take(4).ToList();
+    }
+
+}

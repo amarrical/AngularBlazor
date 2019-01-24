@@ -1,9 +1,42 @@
 ﻿@page "/detail/{Id:int}"
-<h1>Id is: @Id</h1>
+@using AngularBlazor.UI.Shared
+@using AngularBlazor.UI.Client.Services
+@inject HeroService heroService
+
+<div class="heroDetail">
+    @if (hero == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <h2>@hero.Name.ToUpper()</h2>
+        <div><span>Id: </span>@hero.Id</div>
+        <div>
+            <label>
+                Name:
+                <input onchange="@NameChange" value="@hero.Name" />
+            </label>
+        </div>
+    }
+</div>
 
 @functions {
 
     [Parameter]
     private int Id { get; set; }
+
+    private Hero hero;
+
+    protected override async Task OnInitAsync()
+    {
+        hero = await this.heroService.Get(this.Id);
+    }
+
+    public void NameChange(UIChangeEventArgs args)
+    {
+        hero.Name = args.Value.ToString();
+        this.heroService.Change();
+    }
 
 }

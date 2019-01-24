@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
 
@@ -16,6 +17,8 @@
         private readonly HttpClient client;
 
         private readonly MessagesService messageService;
+
+        private List<Hero> heroes;
 
         #endregion
 
@@ -36,7 +39,18 @@
         public async Task<IReadOnlyList<Hero>> Get()
         {
             this.messageService.Add("Hero Service: Fetched Heroes");
-            return await this.client.GetJsonAsync<Hero[]>("api/Hero");
+            if (this.heroes == null)
+            {
+                this.heroes = (await this.client.GetJsonAsync<Hero[]>("api/Hero")).ToList();
+            }
+
+            return this.heroes;
+        }
+
+        public async Task<Hero> Get(int id)
+        {
+            this.messageService.Add($"Hero Service: Fetched Hero Id ({id})");
+            return (await this.Get()).SingleOrDefault(h => h.Id == id);
         }
 
         public void Add(Hero hero)

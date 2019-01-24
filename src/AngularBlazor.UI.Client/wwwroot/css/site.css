@@ -13,27 +13,161 @@ h2, h3 {
 body {
     margin: 2em;
 }
-body, input[type="text"], button {
+body, input[text], button {
     color: #888;
     font-family: Cambria, Georgia;
 }
+a {
+    cursor: pointer;
+    cursor: hand;
+}
+button {
+    font-family: Arial;
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+}
+button:hover {
+    background-color: #cfd8dc;
+}
+button:disabled {
+    background-color: #eee;
+    color: #aaa;
+    cursor: auto;
+}
 
+/* Navigation link styles */
+nav a {
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 4px;
+}
+nav a:visited, a:link {
+    color: #607D8B;
+}
+nav a:hover {
+    color: #039be5;
+    background-color: #CFD8DC;
+}
+nav a.active {
+    color: #039be5;
+}
+
+/* everywhere else */
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
 
 
+
+/* Main private CSS Styles */
+.main h1 {
+    font-size: 1.2em;
+    color: #999;
+    margin-bottom: 0;
+}
+
+.main h2 {
+    font-size: 2em;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.main nav a {
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 4px;
+}
+
+.main nav a:visited, a:link {
+    color: #607d8b;
+}
+
+.main nav a:hover {
+    color: #039be5;
+    background-color: #cfd8dc;
+}
+
+.main nav a.active {
+    color: #039be5;
+}
+
+/* Dashboard private CSS Styles */
+.dashboard [class*='col-'] {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.dashboard [class*='col-']:last-of-type {
+    padding-right: 0;
+}
+
+.dashboard a {
+    text-decoration: none;
+}
+
+.dashboard h3 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.dashboard h4 {
+    position: relative;
+}
+
+.dashboard .grid {
+    margin: 0;
+}
+
+.dashboard .col-1-4 {
+    width: 25%;
+}
+
+.dashboard .module {
+    padding: 20px;
+    text-align: center;
+    color: #eee;
+    max-height: 120px;
+    min-width: 120px;
+    background-color: #607d8b;
+    border-radius: 2px;
+}
+
+.dashboard .module:hover {
+        background-color: #eee;
+        cursor: pointer;
+        color: #607d8b;
+    }
+
+.dashboard .grid-pad {
+    padding: 10px 0;
+}
+
+
 /* HeroesComponent's private CSS styles */
-.selected {
+.heroes .selected {
     background-color: #CFD8DC !important;
     color: white;
 }
-.heroes {
+
+.heroes heroList {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
     width: 15em;
 }
+
 .heroes li {
     cursor: pointer;
     position: relative;
@@ -43,20 +177,25 @@ body, input[type="text"], button {
     padding: .3em 0;
     height: 1.6em;
     border-radius: 4px;
+    list-style: none;
 }
+
 .heroes li.selected:hover {
     background-color: #BBD8DC !important;
     color: white;
 }
+
 .heroes li:hover {
     color: #607D8B;
     background-color: #DDD;
     left: .1em;
 }
+
 .heroes .text {
     position: relative;
     top: -3px;
 }
+
 .heroes .badge {
     display: inline-block;
     font-size: small;
@@ -72,13 +211,23 @@ body, input[type="text"], button {
     border-radius: 4px 0 0 4px;
 }
 
-.messages h2 {
-    color: red;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
+/* HeroDetail private CSS Styles */
+.heroDetail label {
+    display: inline-block;
+    width: 3em;
+    margin: .5em 0;
+    color: #607D8B;
+    font-weight: bold;
 }
 
-button.clear {
+.heroDetail input {
+    height: 2em;
+    font-size: 1em;
+    padding-left: .4em;
+}
+
+.heroDetail button {
+    margin-top: 20px;
     font-family: Arial;
     background-color: #eee;
     border: none;
@@ -88,7 +237,53 @@ button.clear {
     cursor: hand;
 }
 
+.heroDetail button:hover {
+    background-color: #cfd8dc;
+}
 
+.heroDetail button:disabled {
+    background-color: #eee;
+    color: #ccc;
+    cursor: auto;
+}
+
+
+/* Messages private CSS Styles */
+.messages h2 {
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+.messages button {
+    color: crimson;
+    font-family: Cambria, Georgia;
+}
+
+.messages button.clear {
+    font-family: Arial;
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.messages button:hover {
+    background-color: #cfd8dc;
+}
+
+.messages button:disabled {
+    background-color: #eee;
+    color: #aaa;
+    cursor: auto;
+}
+
+.messages button.clear {
+    color: #888;
+    margin-bottom: 12px;
+}
 
 
 
@@ -103,7 +298,7 @@ button.clear {
 
 
 /* Below is Blazor default styling */
-html, body {
+/*html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -220,7 +415,8 @@ app {
     }
 
     .sidebar .collapse {
-        /* Never collapse the sidebar for wide screens */
         display: block;
     }
 }
+
+*/

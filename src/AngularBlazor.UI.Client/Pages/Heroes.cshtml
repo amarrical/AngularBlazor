@@ -2,29 +2,27 @@
 @using AngularBlazor.UI.Shared
 @using AngularBlazor.UI.Client.Services
 @inject HeroService HeroService
-@inject HttpClient Http
 
-@if (heroList == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <h2>My Heroes</h2>
-    <ul class="heroes">
-        @foreach (var hero in heroList)
-        {
-            <li class="@(hero == selectedHero ? "selected" : "")" onclick=@(() => OnSelect(hero))>
-                <span class="badge">@hero.Id</span> @hero.Name
-            </li>
-        }
-    </ul>
-    if (selectedHero != null)
+<div class="heroes">
+    @if (heroList == null)
     {
-        <HeroView Hero="@selectedHero" />
+        <p><em>Loading...</em></p>
     }
-}
-
+    else
+    {
+        <h2>My Heroes</h2>
+        <ul class="heroList">
+            @foreach (var hero in heroList)
+            {
+                <li>
+                    <a href="/detail/@hero.Id">
+                        <span class="badge">@hero.Id</span> @hero.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</div>
 
 @functions {
 
