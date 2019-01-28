@@ -19,7 +19,7 @@
 
         #region [ Properties ]
 
-        public IReadOnlyList<string> Messages => messages;
+        public IReadOnlyList<string> Messages => this.messages;
 
         #endregion
 
@@ -27,13 +27,13 @@
 
         public void Add(string message)
         {
-            messages.Add(message);
+            this.messages.Add(message);
             this.NotifyStateChanged();
         }
 
         public void Clear()
         {
-            messages.Clear();
+            this.messages.Clear();
             this.NotifyStateChanged();
         }
 

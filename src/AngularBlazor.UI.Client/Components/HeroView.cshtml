@@ -17,9 +17,9 @@
     Hero hero { get; set; }
 
 
-    public void Change(UIChangeEventArgs e)
+    public void Change(UIChangeEventArgs args)
     {
-        hero.Name = e.Value.ToString();
+        hero.Name = args.Value.ToString();
         Console.WriteLine("Hero name changed");
         heroService.Change();
     }

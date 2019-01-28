@@ -38,31 +38,41 @@
 
         public async Task<IReadOnlyList<Hero>> Get()
         {
-            this.messageService.Add("Hero Service: Fetched Heroes");
             if (this.heroes == null)
-            {
-                this.heroes = (await this.client.GetJsonAsync<Hero[]>("api/Hero")).ToList();
-            }
+                await this.RefreshHeroes();
 
             return this.heroes;
         }
 
         public async Task<Hero> Get(int id)
         {
-            this.messageService.Add($"Hero Service: Fetched Hero Id ({id})");
             return (await this.Get()).SingleOrDefault(h => h.Id == id);
         }
 
-        public void Add(Hero hero)
+        public async Task Save(Hero hero)
         {
-            // heroes.Add(hero);
-            this.NotifyStateChanged();
+            await this.client.PutJsonAsync("api/Hero", hero);
+            this.messageService.Add($"Hero {hero.Name} saved");
+            await this.RefreshHeroes();
+        }
+
+        public async Task Add(string heroName)
+        {
+            var id = await this.client.PostJsonAsync<int>("api/Hero", heroName);
+            this.messageService.Add($"Created hero: {heroName} with Id: {id}");
+            await this.RefreshHeroes();
+        }
+
+        public async Task Delete(Hero hero)
+        {
+            await this.client.DeleteAsync($"api/hero/{hero.Id}");
+            this.messageService.Add($"Hero Service: Deleted hero {hero.Name}");
+            await this.RefreshHeroes();
         }
 
         public void Change()
         {
-            Console.WriteLine("Heroservice Change");
-            this.OnChange?.Invoke();
+            this.NotifyStateChanged();
         }
 
         #endregion
@@ -70,6 +80,13 @@
         #region [ Helpers ]
 
         private void NotifyStateChanged() => this.OnChange?.Invoke();
+
+        private async Task RefreshHeroes()
+        {
+            this.messageService.Add("Hero Service: Fetched Heroes");
+            this.heroes = (await this.client.GetJsonAsync<Hero[]>("api/Hero")).ToList();
+            this.NotifyStateChanged();
+        }
 
         #endregion
     }

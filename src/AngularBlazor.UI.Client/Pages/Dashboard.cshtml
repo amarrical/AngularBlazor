@@ -23,6 +23,7 @@
                 </a>
             }
         </div>
+        <HeroSearch HeroList="@HeroList" />
     }
 </div>
 
@@ -30,9 +31,12 @@
 
     List<Hero> topHeroes;
 
+    IReadOnlyList<Hero> HeroList;
+
     protected override async Task OnInitAsync()
     {
-        topHeroes = (await this.HeroService.Get()).Take(4).ToList();
+        this.HeroList = await this.HeroService.Get();
+        topHeroes = this.HeroList.Take(4).ToList();
     }
 
 }

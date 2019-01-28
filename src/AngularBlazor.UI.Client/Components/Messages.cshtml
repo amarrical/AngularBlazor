@@ -1,5 +1,5 @@
 ﻿@using AngularBlazor.UI.Client.Services
-@inject MessagesService Service
+@inject MessagesService MessageService
 
 @if (List.Any())
 {
@@ -19,13 +19,14 @@
 
     protected override void OnInit()
     {
-        this.List = Service.Messages;
+        this.List = MessageService.Messages;
+        MessageService.OnChange += this.StateHasChanged;
     }
 
     private void Clear()
     {
         Console.WriteLine("Cleared messages");
-        this.Service.Clear();
+        this.MessageService.Clear();
     }
 
 }

@@ -11,6 +11,14 @@
     else
     {
         <h2>My Heroes</h2>
+        <div>
+            <label>Hero name:
+                <input bind="@heroName" />
+            </label>
+            <button onclick="@AddHero">
+                add
+            </button>
+        </div>
         <ul class="heroList">
             @foreach (var hero in heroList)
             {
@@ -18,6 +26,7 @@
                     <a href="/detail/@hero.Id">
                         <span class="badge">@hero.Id</span> @hero.Name
                     </a>
+                    <button class="delete" title="Delete Hero" onclick="@(async () => await Delete(hero))">X</button>
                 </li>
             }
         </ul>
@@ -26,28 +35,36 @@
 
 @functions {
 
-    Hero selectedHero;
-
     IReadOnlyList<Hero> heroList;
-     
+
+    string heroName;
+
     protected override async Task OnInitAsync()
     {
-        heroList = await this.HeroService.Get();
+        await this.GetHeroes();
     }
 
     protected override void OnInit()
     {
-        HeroService.OnChange += StateChange;
+        HeroService.OnChange += this.StateHasChanged;
     }
 
-    void OnSelect(Hero hero)
+    protected async Task AddHero()
     {
-        selectedHero = hero;
+        await this.HeroService.Add(this.heroName);
+        this.heroName = string.Empty;
+        await this.GetHeroes();
     }
 
-    private void StateChange()
+    private async Task GetHeroes()
     {
-        this.StateHasChanged();
+        heroList = await this.HeroService.Get();
+    }
+
+    private async Task Delete(Hero hero)
+    {
+        await this.HeroService.Delete(hero);
+        await this.GetHeroes();
     }
 
 }
