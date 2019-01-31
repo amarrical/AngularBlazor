@@ -6,7 +6,7 @@
 <div id="hero-search">
     <h4>Hero Search</h4>
     <input id="search-box" bind="@searchString" />
-    <button class="btn btn-search" onclick="@Search">Search</button>
+    <button class="btn btn-search">Search</button>
     <ul>
         @foreach (var hero in Heroes)
         {
@@ -41,11 +41,6 @@
     {
         if (this.HeroList == null)
             this.HeroList = await this.HeroService.Get();
-    }
-
-    private void Search()
-    {
-        this.StateHasChanged();
     }
 
 }
