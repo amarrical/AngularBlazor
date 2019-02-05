@@ -33,6 +33,7 @@
 
         public void Clear()
         {
+            Console.WriteLine("Clearing messages");
             this.messages.Clear();
             this.NotifyStateChanged();
         }
