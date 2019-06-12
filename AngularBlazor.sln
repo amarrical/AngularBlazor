@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularBlazor.UI.Server", "src\AngularBlazor.UI.Server\AngularBlazor.UI.Server.csproj", "{44040907-449E-4D9A-B187-5A5ED66A79F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularBlazor.UI.Server", "src\AngularBlazor.UI.Server\AngularBlazor.UI.Server.csproj", "{44040907-449E-4D9A-B187-5A5ED66A79F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularBlazor.UI.Client", "src\AngularBlazor.UI.Client\AngularBlazor.UI.Client.csproj", "{10699311-84D1-4B9D-BD8E-F88E3537B05D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularBlazor.UI.Client", "src\AngularBlazor.UI.Client\AngularBlazor.UI.Client.csproj", "{10699311-84D1-4B9D-BD8E-F88E3537B05D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularBlazor.UI.Shared", "src\AngularBlazor.UI.Shared\AngularBlazor.UI.Shared.csproj", "{9974AE4B-A31B-4A5E-ADD7-B08F3814D124}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DAC6941B-8158-4209-B660-26CD8FC24CFE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{966660E8-4437-478D-ACFA-06397EA0E94A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularBlazor.UI.Shared", "src\AngularBlazor.UI.Shared\AngularBlazor.UI.Shared.csproj", "{9974AE4B-A31B-4A5E-ADD7-B08F3814D124}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,11 +30,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{44040907-449E-4D9A-B187-5A5ED66A79F4} = {DAC6941B-8158-4209-B660-26CD8FC24CFE}
-		{10699311-84D1-4B9D-BD8E-F88E3537B05D} = {DAC6941B-8158-4209-B660-26CD8FC24CFE}
-		{9974AE4B-A31B-4A5E-ADD7-B08F3814D124} = {DAC6941B-8158-4209-B660-26CD8FC24CFE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AD9946AB-3575-46F2-BF9A-3A584B755929}

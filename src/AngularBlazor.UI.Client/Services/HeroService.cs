@@ -68,19 +68,22 @@
             }
         }
 
-        public async Task Add(string heroName)
+        public async Task<int> Add(string heroName)
         {
             try
             {
                 var id = await this.client.PostJsonAsync<int>(this.requestUri, heroName);
                 this.heroes.Add(new Hero { Id = id, Name = heroName });
                 this.messageService.Add($"Created hero: {heroName} with Id: {id}");
+                return id;
             }
             catch (FormatException)
             {
                 this.messageService.Add($"Error Creating hero: {heroName}");
                 await this.RefreshHeroes();
             }
+
+            return 0;
         }
 
         public async Task Delete(Hero hero)

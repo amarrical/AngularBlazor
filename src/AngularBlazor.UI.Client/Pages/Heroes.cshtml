@@ -1,6 +1,7 @@
 ﻿@page "/heroes"
 @using AngularBlazor.UI.Shared
 @using AngularBlazor.UI.Client.Services
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
 @inject HeroService HeroService
 
 <div class="heroes">
@@ -12,7 +13,8 @@
     {
         <h2>My Heroes</h2>
         <div>
-            <label>Hero name:
+            <label>
+                Hero name:
                 <input bind="@heroName" />
             </label>
             <button onclick="@AddHero">
@@ -52,9 +54,10 @@
     protected async Task AddHero()
     {
         System.Console.WriteLine("Adding Hero!");
-        await this.HeroService.Add(this.heroName);
+        var id = await this.HeroService.Add(this.heroName);
         this.heroName = string.Empty;
         await this.GetHeroes();
+        UriHelper.NavigateTo($"/detail/{id}");
     }
 
     private async Task GetHeroes()
